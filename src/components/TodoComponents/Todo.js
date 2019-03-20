@@ -4,7 +4,7 @@ import React from 'react';
 const Todo = props => {
   return (
     <div>
-      <h1>{props.task}</h1>
+      <h2>{props.todoItem.task}</h2>
     </div>
   )
 }
