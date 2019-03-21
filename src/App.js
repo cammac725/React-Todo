@@ -11,8 +11,13 @@ class App extends React.Component {
     this.state = {
       todos: [
         {
-          task: 'Code Todo project',
+          task: 'Code another project',
           id: 23094572098,
+          completed: false
+        },
+        {
+          task: 'Buy cheese',
+          id: 2309457209,
           completed: false
         }
       ],
@@ -52,12 +57,6 @@ class App extends React.Component {
     const filteredArr = this.state.todos.filter(todo => {
       return !todo.completed === true;
     })
-    // this.state.todos.filter(todoItem => {
-
-    //   if (todoItem.completed === true) {
-    //     this.state.todos.splice(todoItem);
-    //   }
-    // })
     this.setState({ todos: filteredArr })
   }
 
@@ -73,7 +72,7 @@ class App extends React.Component {
     return (
       <div>
         <div className='App'>
-          <h1>Todo List: MVP</h1>
+          <h1>Cam's Todo List</h1>
 
           <TodoList
             todos={this.state.todos}
