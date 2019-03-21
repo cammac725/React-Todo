@@ -14,21 +14,6 @@ class App extends React.Component {
           task: 'Code Todo project',
           id: 23094572098,
           completed: false
-        },
-        {
-          task: 'Organize bike ride',
-          id: 2304892554,
-          completed: false
-        },
-        {
-          task: 'Practice choir songs',
-          id: 55646345689,
-          completed: false
-        },
-        {
-          task: 'Play 18 holes',
-          id: 252390489308,
-          completed: false
         }
       ],
       task: ''
@@ -49,7 +34,6 @@ class App extends React.Component {
 
   addTodo = event => {
     event.preventDefault();
-
     const newTodo = {
       task: this.state.task,
       completed: false,
@@ -64,8 +48,19 @@ class App extends React.Component {
 
 
   clearTodo = event => {
+    event.preventDefault();
+    const filteredArr = this.state.todos.filter(todo => {
+      return !todo.completed === true;
+    })
+    // this.state.todos.filter(todoItem => {
 
+    //   if (todoItem.completed === true) {
+    //     this.state.todos.splice(todoItem);
+    //   }
+    // })
+    this.setState({ todos: filteredArr })
   }
+
 
   handleChanges = event => {
     this.setState({
@@ -87,6 +82,7 @@ class App extends React.Component {
 
           <TodoForm
             addTodo={this.addTodo}
+            clearTodo={this.clearTodo}
             value={this.state.task}
             handleChanges={this.handleChanges}
           />
