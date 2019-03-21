@@ -1,6 +1,8 @@
 import React from 'react';
+
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css';
 
 class App extends React.Component {
 
@@ -33,8 +35,21 @@ class App extends React.Component {
     }
   }
 
+  toggleItem = id => {
+    const newList = this.state.todos.map(todoItem => {
+      if (todoItem.id === id) {
+        todoItem.completed = !todoItem.completed;
+        return todoItem;
+      } else {
+        return todoItem;
+      }
+    })
+    this.setState({ todos: newList });
+  }
+
   addTodo = event => {
     event.preventDefault();
+
     const newTodo = {
       task: this.state.task,
       completed: false,
@@ -44,6 +59,12 @@ class App extends React.Component {
       todos: [...this.state.todos, newTodo],
       task: ''
     })
+    // console.log(this.state)
+  }
+
+
+  clearTodo = event => {
+
   }
 
   handleChanges = event => {
@@ -61,6 +82,7 @@ class App extends React.Component {
 
           <TodoList
             todos={this.state.todos}
+            toggleItem={this.toggleItem}
           />
 
           <TodoForm
