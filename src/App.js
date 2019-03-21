@@ -1,7 +1,5 @@
 import React from 'react';
-// import TodoList from './components/TodoComponents/TodoList';
-import Todo from './components/TodoComponents/Todo';
-
+import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
 class App extends React.Component {
@@ -31,26 +29,27 @@ class App extends React.Component {
           completed: false
         }
       ],
-      task: '',
+      task: ''
     }
-  };
+  }
 
   addTodo = event => {
     event.preventDefault();
     const newTodo = {
-      task: this.state.todo,
+      task: this.state.task,
       completed: false,
       id: Date.now()
     }
     this.setState({
-      todos: [...this.state.todos, newTodo]
+      todos: [...this.state.todos, newTodo],
+      task: ''
     })
   }
 
   handleChanges = event => {
     this.setState({
       [event.target.name]: event.target.value
-    });
+    })
   }
 
 
@@ -60,9 +59,9 @@ class App extends React.Component {
         <div className='App'>
           <h1>Todo List: MVP</h1>
 
-          {this.state.todos.map(item => (
-            <Todo key={item.id} todoItem={item} />
-          ))}
+          <TodoList
+            todos={this.state.todos}
+          />
 
           <TodoForm
             addTodo={this.addTodo}
@@ -71,8 +70,8 @@ class App extends React.Component {
           />
 
         </div>
-      </div >
-    );
+      </div>
+    )
   }
 }
 
